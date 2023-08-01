@@ -1,9 +1,10 @@
-resource "aws_instance" "web" {
-  ami           = "ami-0753e0e42b20e96e3"
-  instance_type = "t3.micro"
-  key_name = "vinod_2022"
+module "ec2_instance" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
 
-  tags = {
-    Name = "HelloWorld_2023"
-  }
+  name = "myterraform-instance"
+  ami = "ami-0a481e6d13af82399"
+  instance_type          = "t2.micro"
+  key_name               = "docker"
+  vpc_security_group_ids = ["sg-0cf6c40f1aaaf11e6"]
+  subnet_id              = "subnet-01d0f8b4a9a0a2aa0"
 }
